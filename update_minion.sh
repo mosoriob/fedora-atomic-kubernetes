@@ -4,10 +4,8 @@ if [ -z "$1" ]
     exit
 fi
 
-NEW_MINION="10.91.11.217"
-
-ADDR="10.91.11.203"
 ETCD_DISCVERY="10.91.11.202"
+ADDR=$(ip addr | awk '/inet/ && /eth0/{sub(/\/.*$/,"",$2); print $2}')
 MINION_IP_ADDRS=$(cat /usr/lib/systemd/system/kube-controller-manager.service | grep machines | sed -e 's/.*machines=\(.*\)-log.*/\1/' | sed -e 's/ //g' )",$NEW_MINION"
 sudo mount -o remount,rw /dev/mapper/atomicos-root /usr/
 
