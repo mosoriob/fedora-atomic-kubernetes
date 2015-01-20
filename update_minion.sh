@@ -6,7 +6,7 @@ fi
 
 ETCD_DISCVERY="10.91.11.202"
 ADDR=$(ip addr | awk '/inet/ && /eth0/{sub(/\/.*$/,"",$2); print $2}')
-MINION_IP_ADDRS=$(cat /usr/lib/systemd/system/kube-controller-manager.service | grep machines | sed -e 's/.*machines=\(.*\)-log.*/\1/' | sed -e 's/ //g' )",$NEW_MINION"
+MINION_IP_ADDRS=$(cat /usr/lib/systemd/system/kube-controller-manager.service | grep machines | sed -e 's/.*machines=\(.*\)-log.*/\1/' | sed -e 's/ //g' )",$1"
 sudo mount -o remount,rw /dev/mapper/atomicos-root /usr/
 
 cat <<EOF > /usr/lib/systemd/system/kube-controller-manager.service
